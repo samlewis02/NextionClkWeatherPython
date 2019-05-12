@@ -40,7 +40,7 @@ def getWeather(placeName):
         ser.write('temp.txt=\"' + str(ltemp) + 'C\"'+ e)
         ser.write('pres.txt=\"' + str(lpres) + 'mBar\"'+ e)
         ser.write('hum.txt=\"' + str(lhum) + '%RH\"'+ e)
-        ser.write('desc.txt=\"' + str(desc) + '\"'+ e)
+        ser.write('desc.txt=\" ' + str(desc) + '\"'+ e)
         ser.write('status.txt=\" API data received\"' + e)
     else:
         print("Could not contact host")
@@ -79,6 +79,7 @@ while True:
         
     if rn.minute == this_minute + 30 :
         getWeather(myplace);
+        ser.write('status.txt=\" Weather Updated at \"' + time + e)
         this_minute = rn.minute
         
     if(ser.inWaiting()>0):
